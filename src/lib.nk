@@ -1,0 +1,57 @@
+// Define a Stack structure with an array to hold elements
+struct Stack {
+    elements: [i32];
+    size: i32;
+}
+
+// Initialize a new stack
+fn init_stack() -> Stack {
+    return Stack{elements: [i32], size: 0};
+}
+
+// Push an element onto the stack
+fn push(mut Stack:stack, i32:element) -> Void {
+    stack.elements.push(element); // Assuming 'push' adds an element to the array
+    stack.size += 1;
+}
+
+// Pop an element from the stack
+fn pop(mut Stack:stack) -> i32 {
+    if (stack.size > 0) {
+        let:i32 topElement = stack.elements[stack.size - 1];
+        stack.elements = stack.elements[:stack.size - 1]; // Assuming this syntax removes the last element
+        stack.size -= 1;
+        return topElement;
+    } else {
+        println("Stack is empty");
+        return -1; // Assuming -1 is used to indicate an empty stack
+    }
+}
+
+// Print the stack elements
+fn print_stack(Stack:stack) -> Void {
+    println("Stack (top to bottom):");
+    for(i -> stack.size - 1 :: -1) { // Assuming this syntax allows reverse iteration
+        print(stack.elements[i]);
+        println("");
+    }
+}
+
+// Example usage in main
+fn main() -> Void {
+    let:Stack myStack = init_stack();
+    
+    println("Pushing elements onto the stack: 5, 10, 15");
+    push(myStack, 5);
+    push(myStack, 10);
+    push(myStack, 15);
+    print_stack(myStack);
+    
+    println("Popping the top element from the stack");
+    let:i32 poppedElement = pop(myStack);
+    print("Popped element: ");
+    println(poppedElement);
+    print_stack(myStack);
+
+    return;
+}
